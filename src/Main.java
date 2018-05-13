@@ -28,7 +28,7 @@ public class Automato {
          */
 
         String nome = "arq.txt";
-        Hashtable<String, Integer> identificadores = new Hashtable<String, Integer>();
+        Hashtable<String, Float> identificadores = new Hashtable<String, Float>();
         
         try {
             FileReader arquivo = new FileReader(nome);
@@ -107,6 +107,7 @@ public class Automato {
                                     }
                                     else if(linha.charAt(j) == ';'){
                                         System.out.println("numero "+numero);
+                                        identificadores.put(identificador, Float.parseFloat(numero));
                                         numero = "";
                                         break;
                                     }else{
@@ -119,7 +120,7 @@ public class Automato {
                     
                 }
                 flag = true;
-                System.out.println("identificador "+identificador);
+                System.out.println("1 - "+ identificadores.get("varA"));
                 identificador = "";
                 linha = leitura.readLine();
             }
