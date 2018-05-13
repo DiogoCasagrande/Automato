@@ -1,0 +1,4 @@
+varD = 30;
+varC = 22;
+varB = 1;
+varA = 0;
