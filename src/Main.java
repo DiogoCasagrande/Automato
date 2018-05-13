@@ -19,7 +19,7 @@ public class Automato {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
      /**
          * Aqui será feita a chamada dos métodos das classes Expression e
          * Atribution de acordo com aa necessidades do programa vai ser
@@ -38,6 +38,9 @@ public class Automato {
             String linha = leitura.readLine();
             
             String identificador ="";
+            String numero ="";
+            
+            boolean flag = true;
             
             while (linha != null) {
                 System.out.println(linha + "\n");
@@ -46,7 +49,7 @@ public class Automato {
                     
                     linha.charAt(i);
                     char valor = linha.charAt(i);
-                    System.out.println(valor);
+                    
                     if(i==0){
                         if(
                             valor == 'a' || valor == 'b' || valor == 'c' ||
@@ -62,10 +65,10 @@ public class Automato {
                             identificador += valor;
                         }else{
                             System.out.println("String invalida");
-                            break;
+                            throw new Exception();
                         }
-                    }else if(
-                        valor == 'a' || valor == 'b' || valor == 'c' ||
+                    }else if(flag&&
+                        (valor == 'a' || valor == 'b' || valor == 'c' ||
                         valor == 'd' || valor == 'e' || valor == 'f' ||
                         valor == 'g' || valor == 'h' || valor == 'i' || 
                         valor == 'j' || valor == 'k' || valor == 'l' || 
@@ -87,14 +90,36 @@ public class Automato {
                         valor == '4' || valor == '5' || valor == '6' ||
                         valor == '7' || valor == '8' || valor == '9' || 
                         valor == '0' 
-                        ){
+                            )){
                         identificador += valor;
                     }else if(valor == ' '){
-                        System.out.println("espaçoooooooooo");
+                        flag = false;
+                        if(linha.charAt(i+1)== '='){
+                            if(linha.charAt(i+2)== ' '){
+                                for(int j = i+3; j < linha.length();j++ ){
+                                    if(
+                                        linha.charAt(j) == '1' || linha.charAt(j) == '2' || linha.charAt(j) == '3' ||
+                                        linha.charAt(j) == '4' || linha.charAt(j) == '5' || linha.charAt(j) == '6' ||
+                                        linha.charAt(j) == '7' || linha.charAt(j) == '8' || linha.charAt(j) == '9' || 
+                                        linha.charAt(j) == '0'
+                                        ){
+                                        numero += linha.charAt(j);
+                                    }
+                                    else if(linha.charAt(j) == ';'){
+                                        System.out.println("numero "+numero);
+                                        numero = "";
+                                        break;
+                                    }else{
+                                        throw new Exception();
+                                    }
+                                }
+                            }
+                        }
                     }
                     
                 }
-                System.out.println(identificador);
+                flag = true;
+                System.out.println("identificador "+identificador);
                 identificador = "";
                 linha = leitura.readLine();
             }
