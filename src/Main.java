@@ -43,11 +43,13 @@ public class Automato {
             boolean flag = true;
             
             while (linha != null) {
+                System.out.println(linha + "\n");
                 
                 for(int i = 0; i < linha.length() ;i++){
                     
                     linha.charAt(i);
                     char valor = linha.charAt(i);
+                    
                     if(i==0){
                         if(
                             valor == 'a' || valor == 'b' || valor == 'c' ||
@@ -61,11 +63,9 @@ public class Automato {
                             valor == 'y' || valor == 'z' 
                             ){
                             identificador += valor;
-                        }else if(linha.isEmpty()){
-                            linha = leitura.readLine();
-                            if(linha.isEmpty()){
-                                //contagem comeca apartir da aki
-                            }
+                        }else{
+                            System.out.println("String invalida");
+                            throw new Exception();
                         }
                     }else if(flag&&
                         (valor == 'a' || valor == 'b' || valor == 'c' ||
@@ -89,7 +89,7 @@ public class Automato {
                         valor == '1' || valor == '2' || valor == '3' ||
                         valor == '4' || valor == '5' || valor == '6' ||
                         valor == '7' || valor == '8' || valor == '9' || 
-                        valor == '0' 
+                        valor == '0' || valor == '_'
                             )){
                         identificador += valor;
                     }else if(valor == ' '){
@@ -106,6 +106,7 @@ public class Automato {
                                         numero += linha.charAt(j);
                                     }
                                     else if(linha.charAt(j) == ';'){
+                                        System.out.println("numero "+numero);
                                         identificadores.put(identificador, Float.parseFloat(numero));
                                         numero = "";
                                         break;
@@ -119,10 +120,9 @@ public class Automato {
                     
                 }
                 flag = true;
-                
+                System.out.println("1 - "+ identificadores.get("varA"));
                 identificador = "";
                 linha = leitura.readLine();
-               
             }
 
             arquivo.close();
