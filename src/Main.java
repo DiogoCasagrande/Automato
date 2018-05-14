@@ -64,7 +64,7 @@ public class Automato {
                         }else if(linha.isEmpty()){
                             linha = leitura.readLine();
                             if(linha.isEmpty()){
-                                //contagem comeca a partir da aki
+                                //contagem comeca apartir da aki
                             }
                         }
                     }else if(flag&&
